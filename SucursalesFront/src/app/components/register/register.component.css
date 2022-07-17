@@ -1,0 +1,102 @@
+*,*::after, *::before{
+    box-sizing: inherit;
+}
+
+
+.contenedor{
+    margin: 0 auto;
+    max-width: 1170px;
+    width: 90%;
+}
+
+.imagen-formulario{
+    background-image: url(../../../assets/ImgEmpresaT.png);
+    background-position: center center;
+    background-size: cover;
+    height: 200px;
+    flex: 0 0 calc(60%);
+    position: relative;
+}
+/*
+.imagen-formulario::before{
+   content: '';
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: linear-gradient(to right,rgba(141,169,196,.5), rgba(19, 64, 116, .5) );
+}
+*/
+
+@media(min-width:768px){
+    .imagen-formulario{
+        height: 610px;
+        background-position: right;
+    }
+
+}
+@media(min-width:1200px){
+    .imagen-formulario{
+        background-position: center;
+    }
+}
+
+@media(min-width:400px){
+    .contenedor-formulario{
+        display: flex;
+    }
+}
+
+.formulario{
+    padding: 50px;
+    background-color: var(--azul);
+    outline: 1px solid grey;
+}
+
+.texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
+    color: var(--blanco);
+}
+.texto-formulario h3{
+    font-size: 18px;
+    text-align: center;
+}
+.texto-formulario p{
+    font-size: 22px;
+    text-align: center;
+}
+.input label{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 16px 0;
+}
+.password-olvidada a{
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.input input{
+    width: 90%;
+    padding: 8px 18px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input input[type="submit"]{
+    background-color: var(--azulGris);
+    color: var(--blanco);
+    font-size: 10px;
+    font-weight: bold;
+    border: none;
+    margin-top: 5px;
+    transition: background-color .3s ease-in-out;
+}
+.input input[type="submit"]:hover{
+  
+    cursor: pointer;
+    background-color: var(--azulOscuro);
+}
+
+  

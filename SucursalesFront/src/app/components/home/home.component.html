@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="card text-center text-white bg-dark border-dark m-5">
+    <h5 class="card-header">
+        {{company.name}}
+    </h5>
+    <div class="card-body">
+
+        <img src="https://images.adsttc.com/media/images/57fd/1c50/e58e/ce3f/c600/0190/large_jpg/The_Tower_at_Dubai_Creek_Harbour_(6)_Credit_Santiago_Calatrava.jpg?1476205643"
+            width="400" class="img-fluid" />
+        <p class="card-text mt-2">{{company.typeOfCompany}}</p>
+        <a routerLink="/offices" class="btn btn-outline-light" *ngIf="identity == 'COMPANY'">Manage</a>
+    </div>
+    <div class="card-footer text-muted">
+        {{company.town}}
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+<div>
+    <div class="m-3 position-relative">
+        <p class="m-1 fs-2">ADMIN</p>
+
+        <div class="img-fluid m-2">
+            <p class="text-center fs-1">Company</p>
+        </div>
+    </div>
+    <hr>
+    <div class="m-3 position-relative">
+        <div class="m-2">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addCompany">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
+                    </path>
+                </svg>
+                Add Company
+            </button>
+        </div>
+    </div>
+    <div class="m-4 text-center table-responsive">
+
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type Of Company</th>
+                    <th scope="col">town</th>
+                    <th scope="col">role</th>
+                    <th scope="col">actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let comp of companies">
+                    <th scope="row">1</th>
+                    <td>{{comp.name}}</td>
+                    <td>{{comp.typeOfCompany}}</td>
+                    <td>{{comp.town}}</td>
+                    <td>{{comp.role}}</td>
+                    <td>  <svg (click)="deleteCompany(comp._id)" style="margin-right: 7%; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="35"
+                            height="35" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z" />
+                        </svg>
+
+                        <svg (click)="getCompany(comp._id)" data-bs-toggle="offcanvas" data-bs-target="#updateCompany" aria-controls="updateCompany"
+                            style="margin-right: 2%; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="30"
+                            height="30" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                        </svg>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+    </div>
+    <app-footer></app-footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addCompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Company</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #saveCompanyForm="ngForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label mt-4">Name</label>
+                            <input [(ngModel)]="company.name" name="name" type="text" class="form-control" id="name"
+                                aria-describedby="emailHelp" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="form-label mt-4">Type Of Company</label>
+                            <input [(ngModel)]="company.typeOfCompany" name="type" type="text" class="form-control"
+                                id="typeCompany" placeholder="Type of Company: Restaurante...">
+                        </div><br>
+                        <div class="form-group">
+                            <label class="form-label">Town</label>
+                            <select [(ngModel)]="company.town" name="town" type="text" #town="ngModel"
+                                class="form-select" aria-label="Default select example">
+                                <option value="" disabled>Select</option>
+                                <option *ngFor="let town of towns">{{town}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label mt-4">Password</label>
+                            <input [(ngModel)]="company.password" name="password" type="password" p class="form-control"
+                                id="password" placeholder="Password">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" (click)="addCompany()" class="btn btn-primary"
+                            data-bs-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.817);" class="offcanvas offcanvas-start" data-bs-scroll="true"
+        tabindex="-1" id="updateCompany" aria-labelledby="updateUp">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="updateUp" style="color: white;">- Update User -</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+
+        <div class="offcanvas-body">
+            <form *ngIf="companyUpdate">
+                <div class="form-group">
+                    <label for="name" class="form-label mt-4" style="color: white">Name </label>
+                    <input [(ngModel)]="companyUpdate.name"  name="name" type="text" class="form-control" id="name"
+                        aria-describedby="emailHelp" placeholder="Enter name product">
+                </div>
+                <div class="form-group">
+                    <label for="type" class="form-label mt-4" style="color: white">typeOfCompany</label>
+                    <input [(ngModel)]="companyUpdate.typeOfCompany"  name="nameProvider" type="text" class="form-control" id="nameProvider"
+                        placeholder="Enter name provider">
+                </div>
+                <div class="form-group">
+                    <label for="town" class="form-label mt-4" style="color: white">Town</label>
+                    <select [(ngModel)]="companyUpdate.town" name="town" type="text" 
+                        class="form-select" aria-label="Default select example">
+                        <option value="" disabled>Select</option>
+                        <option *ngFor="let town of towns">{{town}}</option>
+                    </select>
+                </div>
+
+                <div class="m-5">
+                    <button type="submit" class="btn btn-light" data-bs-dismiss="offcanvas" (click)="updateCompany()" >Save Changes</button>
+                    <button style="margin-left: 6%;" type="button" data-bs-dismiss="offcanvas"
+                        class="btn btn-light">Close</button>
+                </div>
+
+            </form>
+        </div>
+    </div>

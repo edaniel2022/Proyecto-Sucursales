@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<br>
+<br>
+
+    <div class="contenedor-formulario contenedor">
+        <form  (ngSubmit)="login(loginForm)" #loginForm="ngForm"  class="formulario">
+    
+                <h3>Login</h3>
+
+            <div class="input">
+                <span *ngIf="!name.valid && name.touched" style="color: rgb(247, 126, 40);">
+                    Required Field
+                </span>
+                <input [(ngModel)]="company.name" name="name"  #name="ngModel" placeholder="Enter Company" required/>
+                <label class="form-label" >Company</label>
+            </div>
+        
+            <div class="input">
+                <span *ngIf="!name.valid && name.touched" style="color: rgb(247, 126, 40);">
+                    Required Field
+            </span>
+                <input [(ngModel)]="company.password" name="password" type="password"  #name="ngModel" placeholder="Enter Company" required/>
+                <label class="for-label" >Password</label>
+            </div>
+
+            <div class="password-olvidada mb-4">
+                <a routerLink="/register">Create company</a>
+            </div>
+
+            <div class="input">
+                <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-warning">Login</button>
+            </div>       
+  </form>
+        <div class="imagen-formulario">
+
+        </div>
+    </div>

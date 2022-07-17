@@ -1,0 +1,175 @@
+<app-navbar></app-navbar>
+
+<div class="card text-center  bg-white border-white m-5">
+    <h4 [(ngModel)]="company.name" name="name" class="card-title"
+        style="text-align: center;margin-top: 3%;color: rgb(0, 0, 0);">- {{company.name}} -</h4>
+    <hr style="margin-left: 10%;margin-right: 10%; background-color: rgb(0, 0, 0);">
+
+    <div class="card-body">
+        <img src="https://images.adsttc.com/media/images/57fd/1c50/e58e/ce3f/c600/0190/large_jpg/The_Tower_at_Dubai_Creek_Harbour_(6)_Credit_Santiago_Calatrava.jpg?1476205643"
+            width="300" class="img-fluid" />
+        <hr class="text-primary">
+        <h4 class="card-title justify-content-center text-primary">Products</h4>
+        <hr class="text-primary">
+    </div>
+    <div class="m-2">
+        <button type="button" class="btn btn-primary" data-bs-target="#addProduct" data-bs-toggle="modal">Save
+            Product</button>
+    </div>
+
+
+</div>
+
+
+<div class="text-center table-responsive" style="margin-left: 8%;margin-right: 8%; margin-top: -3%;">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">- STOCK -</th>
+                <th scope="col">- Name Product -</th>
+                <th scope="col">- Name Provider -</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pd of products" class="table-light">
+                <th scope="row">{{pd.stock}}</th>
+                <td>{{ pd.nameProduct }}</td>
+                <td>{{pd.nameProvider}}</td>
+                <td>
+                    <svg (click)="getProduct(pd._id)" data-bs-target="#exampleModal" data-bs-toggle="modal"
+                        style="margin-right: 7%; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="30"
+                        height="30" fill="currentColor" class="bi bi-send-plus-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47L15.964.686Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                        <path
+                            d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z" />
+                    </svg>
+
+                    <svg (click)="deleteProduct(pd._id)" style="margin-right: 7%; cursor: pointer;"
+                        xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                        class="bi bi-trash2-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z" />
+                    </svg>
+
+                    <svg (click)="getProduct(pd._id)" data-bs-toggle="offcanvas" data-bs-target="#updateProduct"
+                        aria-controls="updateProduct" style="margin-right: 2%; cursor: pointer;"
+                        xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal" id="addProduct">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">- Add Product -</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="saveProduct(saveProductForm)" #saveProductForm="ngForm">
+                    <div class="form-group">
+                        <label for="nameP" class="form-label mt-4">Name Product </label>
+                        <input [(ngModel)]="product.nameProduct" name="nameProduct" type="text" class="form-control"
+                            id="nameP" aria-describedby="emailHelp" placeholder="Enter name product">
+                    </div>
+                    <div class="form-group">
+                        <label for="namePr" class="form-label mt-4">Name Provider </label>
+                        <input [(ngModel)]="product.nameProvider" name="nameProvider" type="text" class="form-control"
+                            id="provider" placeholder="Enter name provider">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock" class="form-label mt-4">Stock </label>
+                        <input [(ngModel)]="product.stock" name="stock" type="text" class="form-control" id="stock"
+                            placeholder="Stock">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save Product</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="background-color: rgba(0, 0, 0, 0.817);" class="offcanvas offcanvas-start" data-bs-scroll="true"
+    tabindex="-1" id="updateProduct" aria-labelledby="updateUp">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="updateUp" style="color: white;">- Update Product -</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+
+    <div class="offcanvas-body">
+        <form (ngSubmit)="updateProduct()" *ngIf="productU">
+            <div class="form-group">
+                <label for="nameProduct" class="form-label mt-4" style="color: white">Name Product </label>
+                <input [(ngModel)]="productU.nameProduct" name="nameProduct" type="text" class="form-control"
+                    id="nameProduct" aria-describedby="emailHelp" placeholder="Enter name product">
+            </div>
+            <div class="form-group">
+                <label for="nameProvider" class="form-label mt-4" style="color: white">Name Provider </label>
+                <input [(ngModel)]="productU.nameProvider" name="nameProvider" type="text" class="form-control"
+                    id="nameProvider" placeholder="Enter name provider">
+            </div>
+            <div class="form-group">
+                <label for="stockU" class="form-label mt-4" style="color: white">Stock </label>
+                <input [(ngModel)]="productU.stock" name="stockU" type="text" class="form-control" id="stockU"
+                    placeholder="Stock">
+            </div>
+
+            <div class="m-5">
+                <button type="submit" class="btn btn-light" data-bs-dismiss="offcanvas">Save Changes</button>
+                <button style="margin-left: 6%;" type="button" data-bs-dismiss="offcanvas"
+                    class="btn btn-light">Close</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<app-footer></app-footer>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">- Export Product -</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="stock" class="form-label mt-4">Stock </label>
+                    <input [(ngModel)]="productModel.stock" name="stock" type="text" class="form-control" id="stock"
+                        placeholder="Stock">
+                </div>
+                
+                <div class="form-group">
+                    <label for="Sell" class="form-label mt-4">Office</label>
+                    <select [(ngModel)]="productModel.idSucursal" name="office" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Open this select menu</option>
+                        <option *ngFor="let o of offices" value={{o._id}}>{{o.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button (click)="exportProduct()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

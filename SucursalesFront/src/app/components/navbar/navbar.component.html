@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+<!--Agregado-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/productsCompany" *ngIf="identity == 'COMPANY'">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/users" *ngIf="identity == 'ADMIN'">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/offices" *ngIf="identity == 'COMPANY'">Offices</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-person-heart" viewBox="0 0 16 16">
+              <path
+                d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z" />
+            </svg></a>
+<!--Agregado-->
+          <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/view-company">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logOut()">Log out</a>
+          </div>
+        </li>
+      </ul>
+</div>
+</div>
+</nav>

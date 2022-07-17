@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 ">Company Data </h3>
+            <form>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input [(ngModel)]="company.name" name="name" placeholder="Nombre..." type="text"
+                      id="form3Example1m1" class="form-control" />
+                    <label class="form-label"> Name Company</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input [(ngModel)]="company.typeOfCompany" name="typeOfCompany" placeholder="Restaurant..."
+                      type="text" id="form3Example1m1" class="form-control" />
+                    <label class="form-label">Type of Company</label>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+
+              <select [(ngModel)]="company.town" name="town" type="text" #town="ngModel" class="form-select" aria-label="Default select example">    
+                <option value="" selected disabled>Select</option>  
+                 <option *ngFor="let town of towns" >{{town}}</option>
+              </select>
+                  <label class="form-label">Town</label>
+              <br>
+
+              <div class="row">
+                <div class="col-12">
+                  <label  name="role" placeholder="EJ: Guatemala..." type="text"
+                    id="form3Example1m1" class="form-control" disabled>{{company.role}}</label>
+                  <label class="form-label">Role</label>
+                </div>
+              </div>
+
+              <br>
+
+              <div class="d-flex justify ">
+                <button (click)="deleteAccount()" type="button" class="btn btn-primary m-2">Eliminar</button>
+                <button (click)="updateAccount()" type="button" class="btn btn-warning m-2">Editar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
